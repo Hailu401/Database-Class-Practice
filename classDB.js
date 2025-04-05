@@ -21,10 +21,10 @@ app.get("/", (req, res) => res.send("Up and running..."));
 // User account info
 const connection = mysql.createConnection({
 	host: "localhost",
-	user: "",
-	password: "",
-	database: "",
-	// socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock", //path to mysql socket in MAMP (only for mac OS)
+	user: "database-admin",
+	password: "database-admin",
+	database: "database-admin",
+	
 });
 
 // // Connect to MySQL
@@ -103,10 +103,9 @@ app.post("/insert-customers-info", (req, res) => {
 
 	connection.query(insertName, [name], (err, results, fields) => {
 		if (err) console.log(`Error Found: ${err}`);
-		// console.table(results);
+		console.table(results);
 
 		const id = results.insertId;
-
 
 		connection.query(insertAddress, [id, address], (err, results, fields) => {
 			if (err) console.log(`Error Found: ${err}`);
